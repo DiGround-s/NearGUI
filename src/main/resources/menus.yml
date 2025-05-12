@@ -1,0 +1,35 @@
+menu:
+  near:
+    title: "Jugadores cercanos"
+    rows: 4
+    dynamic_updates: false
+    # update_interval: 40
+    items:
+      players:
+        slots: 0-3
+        material: PLAYER_HEAD
+        name: "&b%player_name%"
+        lore:
+          - "&7Nivel: &e%player_level%"
+          - "&7Experiencia: &a%player_exp%/%player_exp_to_level%"
+        use_placeholders: true
+        dynamic_update: true
+        update_interval: 100
+
+      prev_button:
+        slot: 27
+        material: COMPASS
+        name: "&eAnterior"
+        lore:
+          - "&7Pulsa para ver jugadores anteriores."
+        use_placeholders: false
+        dynamic_update: false
+
+      next_button:
+        slot: 35
+        material: COMPASS
+        name: "&eSiguiente"
+        lore:
+          - "&7Pulsa para ver más jugadores."
+        use_placeholders: false
+        dynamic_update: false

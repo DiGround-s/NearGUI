@@ -1,0 +1,7 @@
+prefix: "<#8a51c4>&lNEAR &8•&r"
+
+system:
+  reloaded: "%prefix% <#8fffc1>El plugin ha sido recargado."
+
+near:
+  no-players: "%prefix% <#a33b53>No hay jugadores cerca."

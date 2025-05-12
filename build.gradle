@@ -10,12 +10,16 @@ version = '1.0-SNAPSHOT'
 repositories {
     mavenLocal()
     mavenCentral()
-    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
-    maven { url 'https://oss.sonatype.org/content/groups/public/' }
+    maven { url 'https://repo.papermc.io/repository/maven-public/' }
+    maven {
+        name = "sonatype"
+        url = "https://oss.sonatype.org/content/groups/public/"
+    }
+    maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
 }
 
 dependencies {
-    compileOnly 'org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT'
+    compileOnly 'io.papermc.paper:paper-api:1.19.4-R0.1-SNAPSHOT'
     implementation 'net.exylia:exyliacommons:1.0.0'
 }
 

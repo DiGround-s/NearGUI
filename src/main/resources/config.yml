@@ -1,0 +1,24 @@
+  settings:
+    # Radio por defecto para buscar jugadores (en bloques)
+    default_radius: 100.0
+
+    # Radio máximo permitido (en bloques)
+    max_radius: 500.0
+
+    # Incluir jugadores vanish (invisibles)
+    include_vanished: false
+
+    # Actualización automática del menú (en ticks, 20 ticks = 1 segundo)
+    menu_update_interval: 60
+
+  # Permisos por radio
+  permissions:
+    radius:
+      # neargui.radius.small
+      small: 50.0
+      # neargui.radius.medium
+      medium: 150.0
+      # neargui.radius.large
+      large: 250.0
+      # neargui.radius.max
+      max: 500.0
