@@ -1,0 +1,4 @@
+name: NearGUI
+version: '1.0-SNAPSHOT'
+main: net.exylia.nearGUI.NearGUI
+api-version: '1.18'

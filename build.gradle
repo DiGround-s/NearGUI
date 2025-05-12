@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'xyz.jpenilla.run-paper' version '2.3.1'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'net.exylia'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url 'https://oss.sonatype.org/content/groups/public/' }
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT'
+    implementation 'net.exylia:exyliacommons:1.0.0'
+}
+
+tasks.runServer {
+    minecraftVersion("1.18")
+}
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+}
+
+shadowJar {
+    archiveClassifier.set('')
+    minimize()
+    relocate 'net.exylia.commons', 'net.exylia.neargui.shadow.commons'
+}
+
+build {
+    dependsOn shadowJar
+}
