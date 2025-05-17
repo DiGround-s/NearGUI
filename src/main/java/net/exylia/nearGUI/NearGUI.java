@@ -23,12 +23,9 @@ public final class NearGUI extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Guardar instancia
         instance = this;
 
         DebugUtils.setPrefix(getName());
-
-        saveDefaultConfigs();
 
         loadManagers();
         registerCommands();
@@ -43,8 +40,8 @@ public final class NearGUI extends JavaPlugin {
 
     private void registerCommands() {
         NearCommand nearCommand = new NearCommand(this);
-        getCommand("near").setExecutor(nearCommand);
-        getCommand("near").setTabCompleter(nearCommand);
+        getCommand("neargui").setExecutor(nearCommand);
+        getCommand("neargui").setTabCompleter(nearCommand);
     }
 
     private void loadManagers() {
@@ -53,14 +50,7 @@ public final class NearGUI extends JavaPlugin {
         nearManager = new NearManager(this);
     }
 
-    private void saveDefaultConfigs() {
-        saveDefaultConfig();
-        saveResource("messages.yml", false);
-        saveResource("menus.yml", false);
-    }
-
     public void reload() {
-        reloadConfig();
         configManager.reloadAllConfigs();
         nearManager.loadConfig();
     }

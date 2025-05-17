@@ -1,4 +1,10 @@
 name: NearGUI
 version: '1.0-SNAPSHOT'
 main: net.exylia.nearGUI.NearGUI
-api-version: '1.18'
+api-version: '1.17'
+commands:
+  neargui:
+    description: 'Ver jugadores cercanos'
+    usage: '/near [radio]'
+    aliases:
+      - near
