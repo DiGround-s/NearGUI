@@ -18,7 +18,6 @@ import java.util.List;
 public final class NearGUI extends JavaPlugin {
 
     private ConfigManager configManager;
-    private MenuBuilder menuBuilder;
     private static NearGUI instance;
     private NearManager nearManager;
 
@@ -51,7 +50,6 @@ public final class NearGUI extends JavaPlugin {
     private void loadManagers() {
         MenuManager.initialize(this);
         configManager = new ConfigManager(this, List.of("config", "messages", "menus"));
-        menuBuilder = new MenuBuilder(this, configManager);
         nearManager = new NearManager(this);
     }
 
@@ -73,10 +71,6 @@ public final class NearGUI extends JavaPlugin {
 
     public ConfigManager getConfigManager() {
         return configManager;
-    }
-
-    public MenuBuilder getMenuBuilder() {
-        return menuBuilder;
     }
 
     public NearManager getNearManager() {
