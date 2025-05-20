@@ -5,24 +5,26 @@
  */
 package net.exylia.nearGUI;
 
+import net.exylia.commons.ExyliaPlugin;
 import net.exylia.commons.config.ConfigManager;
 import net.exylia.commons.menu.MenuBuilder;
 import net.exylia.commons.menu.MenuManager;
 import net.exylia.commons.utils.DebugUtils;
 import net.exylia.nearGUI.commands.NearCommand;
+import net.exylia.nearGUI.commands.ReloadCommand;
 import net.exylia.nearGUI.managers.NearManager;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
 
-public final class NearGUI extends JavaPlugin {
+public final class NearGUI extends ExyliaPlugin {
 
     private ConfigManager configManager;
+    private MenuBuilder menuBuilder;
     private static NearGUI instance;
     private NearManager nearManager;
 
     @Override
-    public void onEnable() {
+    public void onExyliaEnable() {
         instance = this;
 
         DebugUtils.setPrefix(getName());
@@ -34,23 +36,24 @@ public final class NearGUI extends JavaPlugin {
     }
 
     @Override
-    public void onDisable() {
+    public void onExyliaDisable() {
         DebugUtils.logInfo("Plugin desactivado");
     }
 
     private void registerCommands() {
-        NearCommand nearCommand = new NearCommand(this);
-        getCommand("neargui").setExecutor(nearCommand);
-        getCommand("neargui").setTabCompleter(nearCommand);
+        NearCommand nearCommand = new NearCommand(this, configManager);
+        getCommand("near").setExecutor(nearCommand);
+        getCommand("near").setTabCompleter(nearCommand);
+        getCommand("neargui-reload").setExecutor(new ReloadCommand(this, configManager));
     }
 
     private void loadManagers() {
-        MenuManager.initialize(this);
-        configManager = new ConfigManager(this, List.of("config", "messages", "menus"));
+        configManager = new ConfigManager(this, List.of("config", "messages", "menus/near"));
         nearManager = new NearManager(this);
     }
 
     public void reload() {
+        reloadConfig();
         configManager.reloadAllConfigs();
         nearManager.loadConfig();
     }

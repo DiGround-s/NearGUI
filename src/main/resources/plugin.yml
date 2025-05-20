@@ -1,10 +1,13 @@
 name: NearGUI
 version: '1.0-SNAPSHOT'
 main: net.exylia.nearGUI.NearGUI
-api-version: '1.17'
+api-version: '1.16'
+depend: [PlaceholderAPI]
 commands:
-  neargui:
-    description: 'Ver jugadores cercanos'
-    usage: '/near [radio]'
-    aliases:
-      - near
+  near:
+    description: "Abre el menu de jugadores cercanos"
+    usage: "/near"
+    aliases: ["neargui"]
+  neargui-reload:
+    description: "Recarga el plugin"
+    usage: "/neargui-reload"

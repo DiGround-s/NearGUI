@@ -5,12 +5,6 @@
     # Radio máximo permitido (en bloques)
     max_radius: 500.0
 
-    # Incluir jugadores vanish (invisibles)
-    include_vanished: false
-
-    # Actualización automática del menú (en ticks, 20 ticks = 1 segundo)
-    menu_update_interval: 60
-
   # Permisos por radio
   permissions:
     radius:

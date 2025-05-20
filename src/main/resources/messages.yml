@@ -1,7 +1,9 @@
 prefix: "<#8a51c4>&lNEAR &8•&r"
 
 system:
-  reloaded: "%prefix% <#8fffc1>El plugin ha sido recargado."
+  reload: "%prefix% <#8fffc1>El plugin ha sido recargado."
+  no-permission: "%prefix% <#a33b53>No tienes permiso para usar este comando."
 
 near:
   no-players: "%prefix% <#a33b53>No hay jugadores cerca."
+  invalid-radius: "%prefix% <#a33b53>El radio debe ser un número."

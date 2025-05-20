@@ -1,0 +1,34 @@
+title: "Jugadores cercanos (%page%/%pages%)"
+rows: 4
+dynamic_updates: false
+update_interval: 20
+players:
+  slots: 0-26
+  material: PLAYER_HEAD
+  name: "<#8a51c4>%player_name%"
+  lore:
+    - "&8| <#e7cfff>Rango: <#aa76de>%luckperms_prefix%"
+    - "&8| <#e7cfff>Distancia: <#aa76de>%distance% bloques"
+    - "&8| <#e7cfff>Vida: <#b48fd9>%player_health_rounded%&8/<#aa76de>%player_max_health_rounded%"
+  use_placeholders: true
+  dynamic_update: false
+  update_interval: 100
+prev_button:
+  slot: 27
+  material: ARROW
+  name: "<#ffd2a8>« <#ffc58f>Anterior"
+  lore:
+    - "&8| <#e7cfff>Pulsa para ver jugadores anteriores."
+  use_placeholders: false
+  hide_attributes: true
+next_button:
+  slot: 35
+  material: ARROW
+  name: "<#8fffc1>Siguiente <#a1ffc3>»"
+  lore:
+    - "&8| <#e7cfff>Pulsa para ver más jugadores."
+  use_placeholders: false
+  hide_attributes: true
+filler:
+  material: BLACK_STAINED_GLASS_PANE
+items: [] # Puedes agregar items adicionales si lo deseas
