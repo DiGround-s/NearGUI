@@ -1,16 +1,12 @@
 package net.exylia.nearGUI.commands;
 
 import net.exylia.commons.config.ConfigManager;
-import net.exylia.commons.menu.Menu;
-import net.exylia.commons.menu.PaginationMenu;
-import net.exylia.commons.utils.ColorUtils;
+import net.exylia.commons.utils.MessageUtils;
 import net.exylia.nearGUI.NearGUI;
-import net.kyori.adventure.text.Component;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -29,12 +25,12 @@ public class NearCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         if (!(sender instanceof Player player)) {
-            ColorUtils.sendSenderMessage(sender, configManager.getMessage("near.player-only"));
+            MessageUtils.sendMessageAsync(sender, configManager.getMessage("near.player-only"));
             return true;
         }
 
         if (!player.hasPermission("neargui.use")) {
-            ColorUtils.sendPlayerMessage(player, (configManager.getMessage("system.no-permission")));
+            MessageUtils.sendMessageAsync(player, (configManager.getMessage("system.no-permission")));
             return true;
         }
 
@@ -45,7 +41,7 @@ public class NearCommand implements CommandExecutor, TabCompleter {
                 double requestedRadius = Double.parseDouble(args[0]);
                 radius = Math.min(requestedRadius, plugin.getNearManager().getMaxRadiusForPlayer(player));
             } catch (NumberFormatException e) {
-                ColorUtils.sendPlayerMessage(player, (configManager.getMessage("near.invalid-radius")));
+                MessageUtils.sendMessageAsync(player, (configManager.getMessage("near.invalid-radius")));
                 return true;
             }
         }

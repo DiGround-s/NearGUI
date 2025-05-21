@@ -3,6 +3,7 @@ prefix: "<#8a51c4>&lNEAR &8•&r"
 system:
   reload: "%prefix% <#8fffc1>El plugin ha sido recargado."
   no-permission: "%prefix% <#a33b53>No tienes permiso para usar este comando."
+  player-only: "%prefix% <#a33b53>Debes ser un jugador para usar este comando."
 
 near:
   no-players: "%prefix% <#a33b53>No hay jugadores cerca."

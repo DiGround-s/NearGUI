@@ -1,14 +1,15 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     id 'java'
-    id 'xyz.jpenilla.run-paper' version '2.3.1'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 group = 'net.exylia'
-version = '1.0-SNAPSHOT'
+version = '1.0.0'
 
 ext {
-    adventureVersion = '4.17.0'
+    adventureVersion = '4.21.0'
 }
 
 repositories {
@@ -28,13 +29,13 @@ dependencies {
 
     // Adventure y todas sus dependencias necesarias
     implementation "net.kyori:adventure-api:${adventureVersion}"
-    implementation "net.kyori:adventure-platform-bukkit:4.3.4"
+    implementation "net.kyori:adventure-platform-bukkit:4.4.0"
     implementation "net.kyori:adventure-text-minimessage:${adventureVersion}"
     implementation "net.kyori:adventure-text-serializer-legacy:${adventureVersion}"
 
     // Agregar explícitamente las dependencias transitivas de Adventure
-    implementation "net.kyori:adventure-platform-api:4.3.4"
-    implementation "net.kyori:adventure-platform-facet:4.3.4"
+    implementation "net.kyori:adventure-platform-api:4.4.0"
+    implementation "net.kyori:adventure-platform-facet:4.4.0"
     implementation "net.kyori:adventure-key:${adventureVersion}"
     implementation "net.kyori:adventure-text-serializer-plain:${adventureVersion}"
     implementation "net.kyori:adventure-nbt:${adventureVersion}"
@@ -46,8 +47,12 @@ java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 }
 
+def shadowJarConfig = {
+    relocate 'net.exylia.commons', 'net.exylia.neargui.shadow.commons'
+}
+
 shadowJar {
-    archiveClassifier.set('')
+    archiveClassifier.set('with-adventure')
 
     dependencies {
         include(dependency('net.exylia:exyliacommons'))
@@ -55,15 +60,33 @@ shadowJar {
     }
 
     relocate 'net.exylia.commons', 'net.exylia.neargui.shadow.commons'
-
     relocate 'net.kyori', 'net.exylia.neargui.shadow.kyori'
-
     relocate 'net.kyori.adventure', 'net.exylia.neargui.shadow.adventure'
     relocate 'net.kyori.adventure.platform', 'net.exylia.neargui.shadow.adventure.platform'
     relocate 'net.kyori.adventure.text', 'net.exylia.neargui.shadow.adventure.text'
     relocate 'net.kyori.examination', 'net.exylia.neargui.shadow.examination'
 }
 
-build {
+tasks.register('shadowJarNoAdventure', ShadowJar) {
+    archiveClassifier.set('no-adventure')
+
+    from sourceSets.main.output
+
+    configurations = [project.configurations.runtimeClasspath]
+
+    dependencies {
+        include(dependency('net.exylia:exyliacommons'))
+        exclude(dependency('net.kyori:.*'))
+    }
+
+    relocate 'net.exylia.commons', 'net.exylia.neargui.shadow.commons'
+}
+
+tasks.register('buildAllJars') {
     dependsOn shadowJar
+    dependsOn shadowJarNoAdventure
+}
+
+build {
+    dependsOn buildAllJars
 }

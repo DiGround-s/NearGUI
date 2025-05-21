@@ -3,7 +3,7 @@ package net.exylia.nearGUI.managers;
 import net.exylia.commons.menu.MenuBuilder;
 import net.exylia.commons.menu.MenuItem;
 import net.exylia.commons.menu.PaginationMenu;
-import net.exylia.commons.utils.ColorUtils;
+import net.exylia.commons.utils.MessageUtils;
 import net.exylia.nearGUI.NearGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -63,7 +63,7 @@ public class NearManager {
         if (nearMenu != null) {
             nearMenu.open(player);
         } else {
-            ColorUtils.sendPlayerMessage(player, (plugin.getConfigManager().getMessage("near.no-players")));
+            MessageUtils.sendMessageAsync(player, (plugin.getConfigManager().getMessage("near.no-players")));
         }
     }
 
