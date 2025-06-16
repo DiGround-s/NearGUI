@@ -3,6 +3,8 @@ version: '1.0-SNAPSHOT'
 main: net.exylia.nearGUI.NearGUI
 api-version: '1.16'
 depend: [PlaceholderAPI]
+libraries:
+  - 'net.kyori:adventure-platform-bukkit:4.3.4'
 commands:
   near:
     description: "Abre el menu de jugadores cercanos"

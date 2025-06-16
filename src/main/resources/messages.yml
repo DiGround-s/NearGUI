@@ -7,4 +7,4 @@ system:
 
 near:
   no-players: "%prefix% <#a33b53>No hay jugadores cerca."
-  invalid-radius: "%prefix% <#a33b53>El radio debe ser un número."
+  invalid-radius: "%prefix% <#a33b53>El radio debe ser un nú ."
