@@ -26,6 +26,7 @@ public final class NearGUI extends ExyliaPlugin {
     @Override
     public void onExyliaEnable() {
         instance = this;
+        MenuManager.initialize(this);
 
         DebugUtils.setPrefix(getName());
 
